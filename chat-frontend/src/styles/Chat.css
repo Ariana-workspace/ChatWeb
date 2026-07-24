@@ -1,0 +1,30 @@
+.contenedor-chat {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    width: 40%;
+    margin-top: 1rem;
+    background-color: #bcc9ff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(17, 3, 117, 0.284);
+    overflow-y: auto;
+}
+.contenedor-mensaje {
+    padding: .5rem 1rem;
+    width: 40%;
+    height:auto;
+}
+.contenedor-mensaje h3{
+    margin:1vh;
+    font-size: 1rem;
+}
+.mensaje{
+    background-color: #eaffd3;
+    padding: 0.01rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(17, 3, 117, 0.284);
+}
+.contenedor-mensaje p{
+    display: flex;
+    padding: 0.01rem 1rem;
+}

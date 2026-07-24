@@ -1,0 +1,17 @@
+const Mensaje = ({ usuario, contenido, fecha }) => {
+  return (
+    <div className="contenedor-mensaje">
+      <h3>{usuario}</h3>
+
+      <div className="mensaje">
+        <p>{contenido}</p>
+      </div>
+
+      <p style={{ fontSize: "0.6em" }}>
+        {fecha}
+      </p>
+    </div>
+  );
+};
+
+export default Mensaje;
