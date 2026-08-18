@@ -17,24 +17,26 @@ public class UsuarioService {
         public List<Usuario> obtenerUsuarios() {
                 return restClient
                                 .get()
-                                .uri("https://arianini.alwaysdata.net/usuarios_chat.php")
+                                .uri("https://ariworkplace.alwaysdata.net/usuarios_chat.php")
                                 .retrieve()
                                 .body(new ParameterizedTypeReference<List<Usuario>>() {
                                 });
         }
 
         public Usuario obtenerUsuarioPorId(Integer id_usuario) {
-                return restClient
-                                .get()
-                                .uri("https://arianini.alwaysdata.net/usuarios_chat.php?id_usuario=" + id_usuario)
-                                .retrieve()
-                                .body(Usuario.class);
+            List<Usuario> lista = restClient
+                    .get()
+                    .uri("https://ariworkplace.alwaysdata.net/usuarios_chat.php?id_usuario=" + id_usuario)
+                    .retrieve()
+                    .body(new ParameterizedTypeReference<List<Usuario>>() {});
+
+            return lista.isEmpty() ? null : lista.get(0);
         }
 
         public String login(String email, String password) {
                 return restClient
                                 .get()
-                                .uri("https://arianini.alwaysdata.net/usuarios_chat.php?email={email}&password={password}",
+                                .uri("https://ariworkplace.alwaysdata.net/usuarios_chat.php?email={email}&password={password}",
                                                 email,
                                                 password)
                                 .retrieve()

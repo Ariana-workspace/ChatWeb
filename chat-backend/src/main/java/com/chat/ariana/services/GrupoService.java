@@ -18,7 +18,7 @@ public class GrupoService {
     public List<Grupo> obtenerGrupos(){
         return restClient
                 .get()
-                .uri("https://arianini.alwaysdata.net/grupo_chat.php")
+                .uri("https://ariworkplace.alwaysdata.net/grupo_chat.php")
                 .retrieve()
                 .body(new ParameterizedTypeReference<List<Grupo>>() {});
     }
@@ -26,7 +26,7 @@ public class GrupoService {
     public Grupo obtenerGrupoPorId(Integer id_grupo){
         return restClient
                 .get()
-                .uri("https://arianini.alwaysdata.net/grupo_chat.php?id_grupo="+id_grupo)
+                .uri("https://ariworkplace.alwaysdata.net/grupo_chat.php?id_grupo="+id_grupo)
                 .retrieve()
                 .body(Grupo.class);
     }

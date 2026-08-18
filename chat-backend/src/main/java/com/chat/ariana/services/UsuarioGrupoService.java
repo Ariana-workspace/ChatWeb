@@ -17,7 +17,7 @@ public class UsuarioGrupoService {
     public List<UsuarioGrupo> obtenerUsuarioGrupo(){
         return restClient
                 .get()
-                .uri("https://arianini.alwaysdata.net/usuarios_grupo.php")
+                .uri("https://ariworkplace.alwaysdata.net/usuarios_grupo.php")
                 .retrieve()
                 .body(new ParameterizedTypeReference<List<UsuarioGrupo>>() {});
     }

@@ -3,7 +3,7 @@ package com.chat.ariana.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -11,5 +11,7 @@ import java.time.LocalDateTime;
 public class UsuarioGrupo {
     Integer id_usuario;
     Integer id_grupo;
-    LocalDateTime fecha_union;
+
+
+    LocalDate fecha_union;
 }

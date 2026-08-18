@@ -19,14 +19,14 @@ public class MensajesService {
     public List<Mensaje> obtenerMensajes(){
         return restClient
                 .get()
-                .uri("https://arianini.alwaysdata.net/mensajes.php")
+                .uri("https://ariworkplace.alwaysdata.net/mensajes.php")
                 .retrieve()
                 .body(new ParameterizedTypeReference<List<Mensaje>>() {});
     }
     public Mensaje obtenerMensajePorId(Integer id_mensaje){
         return restClient
                 .get()
-                .uri("https://arianini.alwaysdata.net/mensajes.php?id_mensaje="+id_mensaje)
+                .uri("https://ariworkplace.alwaysdata.net/mensajes.php?id_mensaje="+id_mensaje)
                 .retrieve()
                 .body(Mensaje.class);
     }
@@ -36,7 +36,7 @@ public class MensajesService {
 
         String raw = restClient
                 .post()
-                .uri("https://arianini.alwaysdata.net/mensajes.php")
+                .uri("https://ariworkplace.alwaysdata.net/mensajes.php")
                 .body(mensaje)
                 .retrieve()
                 .body(String.class);
