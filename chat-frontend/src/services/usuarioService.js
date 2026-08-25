@@ -4,7 +4,7 @@ const URL = "http://localhost:8080";
 
 export async function login(email, password) {
 
-    const response = await axios.post(`${URL}/login`, {
+    const response = await axios.post(`${URL}/chat/auth/login`, {
         email,
         password
     });

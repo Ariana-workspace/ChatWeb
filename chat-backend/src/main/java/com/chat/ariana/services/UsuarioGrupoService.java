@@ -22,6 +22,13 @@ public class UsuarioGrupoService {
                 .body(new ParameterizedTypeReference<List<UsuarioGrupo>>() {});
     }
 
+    public List<UsuarioGrupo> obtenerGrupoPorIdUsuario(Integer id_usuario ){
+        return restClient
+                .get()
+                .uri("https://ariworkplace.alwaysdata.net/usuarios_grupo.php?id_usuario="+ id_usuario)
+                .retrieve()
+                .body(new ParameterizedTypeReference<List<UsuarioGrupo>>() {});
+    }
 
 
 }

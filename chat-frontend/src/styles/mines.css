@@ -5,8 +5,14 @@
     .bg-jared {
         background-color: #fe3f1e;
     }
+    .text-jared{
+        color: #fe3f1e;
+    }
+    .btn{
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.308);
+    }
     .fz-20 {
-        font-size: 20px;
+        font-size: 1.15rem;
     }
     .w-10{
         width: 10%;

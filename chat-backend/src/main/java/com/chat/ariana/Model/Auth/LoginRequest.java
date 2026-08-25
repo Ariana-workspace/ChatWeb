@@ -1,4 +1,4 @@
-package com.chat.ariana.Model;
+package com.chat.ariana.Model.Auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

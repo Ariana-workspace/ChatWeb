@@ -2,11 +2,10 @@
     display: flex;
     flex-direction: column;
     height: 80vh;
-    width: 40%;
+    width: 100%;
     margin-top: 1rem;
-    background-color: #bcc9ff;
+    background-color: rgb(21, 21, 21);
     border-radius: 1rem;
-    box-shadow: 0 4px 8px rgba(17, 3, 117, 0.284);
     overflow-y: auto;
 }
 .contenedor-mensaje {
@@ -19,12 +18,38 @@
     font-size: 1rem;
 }
 .mensaje{
-    background-color: #eaffd3;
-    padding: 0.01rem 1rem;
+    background-color: #111111;
+    color:lightblue;
+    padding: 0.5rem .2rem 0.01rem;
     border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(17, 3, 117, 0.284);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.284);
 }
 .contenedor-mensaje p{
     display: flex;
     padding: 0.01rem 1rem;
+}
+.c-escribir{
+    margin: 1vh auto;
+    display: flex;
+    width: 98%;
+    height: 8vh;
+    border-radius: 50px;
+    background-color: #212121;
+    padding: 2vh;
+    justify-content: center;
+    align-items: center;
+}
+.txt-write{
+    background: none;
+    border:none;
+    width: 95%;
+    outline: none;
+    padding: 1vh 2vh;
+    color:white;
+}
+.btn-chat{
+    border:none;
+    border-radius: 50px;
+    height: 5vh;
+    width: 5vh;
 }

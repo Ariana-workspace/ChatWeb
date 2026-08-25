@@ -41,8 +41,9 @@ public class MensajesService {
                 .retrieve()
                 .body(String.class);
 
-        System.out.println("RESPUESTA CRUDA DEL PHP: " + raw);
-        return null; // seguimos en modo debug
+        System.out.println("RESPUESTA PHP MENSAJE: " + raw);
+
+        return mensaje;
     }
 
 

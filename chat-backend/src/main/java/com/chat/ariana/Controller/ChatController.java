@@ -25,9 +25,7 @@ public class ChatController {
     @SendTo("/topic/chat")
     public Mensaje recibirMensaje(Mensaje mensaje) {
         System.out.println("RECIBIDO: " + mensaje);
-        mensajesService.agregarMensaje(mensaje);
         return chatService.procesarMensaje(mensaje);
-
     }
 
 }

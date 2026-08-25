@@ -11,8 +11,10 @@ const Login = () => {
     try{
       const usuario = await login(email, password);
       console.log("Usuario logueado:", usuario);
-      localStorage.setItem("usuario", JSON.stringify(usuario));
-      navigate("/home"); // o "/chat", según tu ruta
+      localStorage.setItem("token", usuario.token);
+      localStorage.setItem("id_usuario",usuario.id_usuario)
+      localStorage.setItem("email", usuario.email)
+      navigate("/home"); 
     }catch(error){
         console.error("Error al iniciar sesión:", error);
     }
@@ -29,9 +31,6 @@ const Login = () => {
     className="form-control my-3"
     value={email}
     onChange={(e) => setEmail(e.target.value)}
-          className='form-control my-3 '
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           />
           <input 
           type="password" placeholder='Contraseña' 
@@ -40,6 +39,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           />
           <button type='submit' className='btn bg-jared text-white fw-semibold fz-20'>Iniciar Sesión</button>
+          <button className='text-jared bg-body btn mt-3 fz-20'>Registrarse</button>
         </form>
         </div>
       </div>

@@ -7,7 +7,7 @@ const Mensaje = ({ usuario, contenido, fecha }) => {
         <p>{contenido}</p>
       </div>
 
-      <p style={{ fontSize: "0.6em" }}>
+      <p style={{ fontSize: "0.7em", margin:"0.2rem" }}>
         {fecha}
       </p>
     </div>
