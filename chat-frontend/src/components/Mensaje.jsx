@@ -1,7 +1,7 @@
 const Mensaje = ({ usuario, contenido, fecha }) => {
   return (
     <div className="contenedor-mensaje">
-      <h3>{usuario}</h3>
+      <h3 className="text-white">{usuario}</h3>
 
       <div className="mensaje">
         <p>{contenido}</p>

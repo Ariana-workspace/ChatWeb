@@ -4,14 +4,18 @@ import { conectarWebSocket, suscribirse,enviarMensaje,desconectarWebSocket } fro
 import '../../styles/Chat.css'
 import '../../styles/main.css'
 import Mensaje from '../../components/Mensaje'
-import Nav from '../../components/Nav'
+import Nav from "../../components/Nav"
+import { usuarioPorId } from '../../services/usuarioService'
 const Chat = () => {
   const [chat, setChat] = useState([]);
-    const [mensaje, setMensaje] = useState("");
-    const [conectado, setConectado] = useState(false);
-    const token =localStorage.getItem("token");
-    const id_usuario =localStorage.getItem("id_usuario");
-    const email = localStorage.getItem("email");
+  const [mensaje, setMensaje] = useState("");
+  const [conectado, setConectado] = useState(false);
+  const [user, setUser] = useState([])
+  const token =localStorage.getItem("token");
+  const id_usuario =localStorage.getItem("id_usuario");
+  const email = localStorage.getItem("email");
+
+    
 
     const handleEnviar = () => {
     if (!mensaje.trim()) return; // evita mandar vacío
@@ -28,10 +32,17 @@ useEffect(() => {
     suscribirse((msg) => {
         setChat((prevChat) => [...prevChat, msg]);
     });
+    const cargarUsuarioUwu= async () =>{
+      const data = await usuarioPorId(id_usuario);
+      setUser(data)
+      return data;
+    }
 
+    cargarUsuarioUwu()
     return () => {
         desconectarWebSocket();
     };
+    
 }, []);
     
   return (
@@ -43,7 +54,7 @@ useEffect(() => {
         <div className='contenedor-chat'>
         {chat.map((m,i) => 
             (
-                <Mensaje key={i} usuario={m.usuario} contenido={m.contenido} fecha={m.fecha} />
+                <Mensaje key={i} usuario={user.nombre} contenido={m.contenido} fecha={m.fecha} />
             )
          )
         }

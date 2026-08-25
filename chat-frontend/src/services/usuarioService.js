@@ -11,3 +11,12 @@ export async function login(email, password) {
 
     return response.data;
 }
+export async function usuarioPorId(id_usuario){
+    const token = localStorage.getItem("token");
+    const response = await axios.get(`${URL}/usuario/${id_usuario}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+    })
+    return response.data;
+}
