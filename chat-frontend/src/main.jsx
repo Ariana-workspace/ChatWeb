@@ -7,7 +7,7 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles/mines.css";
 import Login from './pages/login/Login.jsx'
-import Home from './pages/chat/Home.jsx'
+import Home from './pages/home/Home.jsx'
 
 const queryClient = new QueryClient({
   defaultOptions: {

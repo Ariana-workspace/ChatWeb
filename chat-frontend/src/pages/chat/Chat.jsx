@@ -4,27 +4,21 @@ import { conectarWebSocket, suscribirse,enviarMensaje,desconectarWebSocket } fro
 import '../../styles/Chat.css'
 import '../../styles/main.css'
 import Mensaje from '../../components/Mensaje'
-import Nav from "../../components/Nav"
 import { usuarioPorId } from '../../services/usuarioService'
 const Chat = () => {
   const [chat, setChat] = useState([]);
   const [mensaje, setMensaje] = useState("");
-  const [conectado, setConectado] = useState(false);
   const [user, setUser] = useState([])
-  const token =localStorage.getItem("token");
   const id_usuario =localStorage.getItem("id_usuario");
-  const email = localStorage.getItem("email");
-
-    
-
+  const idGrupoLocal = localStorage.getItem("id_grupo");
     const handleEnviar = () => {
     if (!mensaje.trim()) return; // evita mandar vacío
     enviarMensaje({
-      id_grupo:1, 
+      id_grupo:idGrupoLocal, 
         id_usuario: id_usuario,
         contenido: mensaje
     });
-    setMensaje(""); // limpia el input después de enviar
+    setMensaje(""); 
 };
 
 useEffect(() => {
@@ -46,10 +40,9 @@ useEffect(() => {
 }, []);
     
   return (
-    <div className='contenedor-main'>
-      <Nav/>
+    
 
-      <div className='contenedor-completo'>
+      <div className='chat'>
         
         <div className='contenedor-chat'>
         {chat.map((m,i) => 
@@ -65,7 +58,7 @@ useEffect(() => {
       </div>
 
       </div>
-    </div>
+  
   )
 }
 
