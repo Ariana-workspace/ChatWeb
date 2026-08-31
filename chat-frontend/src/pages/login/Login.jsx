@@ -19,6 +19,9 @@ const Login = () => {
         console.error("Error al iniciar sesión:", error);
     }
   }
+  const irARegistrarse= ()=>{
+    navigate("/register"); 
+  }
   return (
     <div className="container-login d-flex  justify-content-center ">
       <div className='w-20 h-70 d-flex  justify-content-center m-auto row-cols-1'>
@@ -26,11 +29,11 @@ const Login = () => {
         <h1 className='text-center '>Login</h1>
         <form onSubmit={iniciarSesion} className='d-flex flex-column '>
           <input 
-          ttype="text"
-    placeholder="Email"
-    className="form-control my-3"
-    value={email}
-    onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          placeholder="Email"
+          className="form-control my-3"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           />
           <input 
           type="password" placeholder='Contraseña' 
@@ -39,8 +42,11 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           />
           <button type='submit' className='btn bg-jared text-white fw-semibold fz-20'>Iniciar Sesión</button>
-          <button className='text-jared bg-body btn mt-3 fz-20'>Registrarse</button>
+          
         </form>
+        <button onClick={()=>{
+            irARegistrarse()
+          }} className='text-jared bg-body btn mt-3 fz-20'>Registrarse</button>
         </div>
       </div>
     </div>

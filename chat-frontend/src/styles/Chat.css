@@ -53,3 +53,12 @@
     height: 5vh;
     width: 5vh;
 }
+::-webkit-scrollbar{
+    background-color: transparent;
+    padding: 1px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #1f1f1f;
+    height: 1rem;
+    border-radius: 1rem;
+}

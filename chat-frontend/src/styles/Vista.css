@@ -1,0 +1,93 @@
+.contenedor-de-navegacion{
+    display: flex;
+    height: 95vh;
+    width: 20%;
+    margin-top: 1rem;
+    flex-direction: column;
+    justify-content: end;
+   
+}
+.navegacion{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    padding: 1vh 2vh;
+    background-color: rgb(21, 21, 21);
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.284);
+}
+.header-nav{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    width: 15rem;
+    height: 2.4rem;
+    justify-content: space-around;
+}
+ul{
+    margin: 0 0 .1rem 0;
+}
+li{
+    margin-right: 1rem;
+}
+
+.black-btn{
+    background-color: rgb(21, 21, 21);
+    padding: 1vh 2vh;
+}
+.perfil{
+    background-color: crimson;
+    width: 100%;
+    height: 60%;
+}
+.amigos{
+    margin:0vh auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.opciones{   
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    width: 20rem;
+    height: 3rem;
+    margin: 0;
+    padding: 1vh 1vh;
+}
+.amigos ul li{
+    margin-right: .5rem;
+}
+.amigos ul button{
+    border: none;
+    border-radius: 1rem;
+    padding: .5vh 2vh;
+    font-weight: 700;
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.338);
+}
+
+.txt-write{
+    background-color: #212121;
+    border:none;
+    border-radius: 2rem;
+    width: 95%;
+    height: 3rem;
+    outline: none;
+    padding: 1vh 2vh;
+    color:white;
+}
+.lista-amigos{
+    list-style-type: none;
+    width: 90%;
+    margin: 0 0 2rem 0;
+    padding: 1vh 1vh;
+}
+.lista-amigos li{
+    background-color: rgb(26, 26, 26);
+    margin:.5rem 0;
+    padding: 1vh;
+    border-radius: .6rem;
+    color:rgb(67, 67, 67);
+    font-weight: 600;
+
+}

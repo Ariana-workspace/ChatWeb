@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles/mines.css";
 import Login from './pages/login/Login.jsx'
 import Home from './pages/home/Home.jsx'
+import Register from './pages/register/Register.jsx'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element:<Home/>
+  },
+  {
+    path: "/register",
+    element:<Register/>
   }
 
 ])

@@ -5,23 +5,26 @@ import '../../styles/Chat.css'
 import '../../styles/main.css'
 import Mensaje from '../../components/Mensaje'
 import { usuarioPorId } from '../../services/usuarioService'
-const Chat = () => {
+import { historialDeMensajePorGrupo, historialMensajes } from '../../services/mensaje'
+const Chat = ({idGrupo}) => {
   const [chat, setChat] = useState([]);
   const [mensaje, setMensaje] = useState("");
   const [user, setUser] = useState([])
   const id_usuario =localStorage.getItem("id_usuario");
-  const idGrupoLocal = localStorage.getItem("id_grupo");
-    const handleEnviar = () => {
-    if (!mensaje.trim()) return; // evita mandar vacío
-    enviarMensaje({
-      id_grupo:idGrupoLocal, 
+  
+  const handleEnviar = () => {
+  if (!mensaje.trim()) return; // evita mandar vacío
+  enviarMensaje({
+      id_grupo:idGrupo, 
         id_usuario: id_usuario,
         contenido: mensaje
-    });
-    setMensaje(""); 
+  });
+  setMensaje(""); 
 };
 
 useEffect(() => {
+    if (!idGrupo) return;
+
     conectarWebSocket();
     suscribirse((msg) => {
         setChat((prevChat) => [...prevChat, msg]);
@@ -31,13 +34,18 @@ useEffect(() => {
       setUser(data)
       return data;
     }
+    const cargarHistorial = async () =>{
+      const data = await historialDeMensajePorGrupo(idGrupo);
+      setChat(data);
+    }
 
     cargarUsuarioUwu()
+    cargarHistorial()
     return () => {
-        desconectarWebSocket();
+      desconectarWebSocket();
     };
     
-}, []);
+}, [idGrupo]);
     
   return (
     

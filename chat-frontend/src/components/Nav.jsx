@@ -2,21 +2,10 @@ import { useEffect,useState } from 'react'
 import { obtenerGrupoPorIdUsuario } from '../services/usuarioGruposService';
 import { obtenerGrupoPorId } from '../services/grupoService';
 
-const Nav = () => {
+const Nav = ({onSeleccionarGrupo}) => {
   const [grupos, setGrupos] =useState([]);
   const id_usuario = localStorage.getItem("id_usuario")
-  const [grupo, setGrupo] = useState([])
-  const [id_grupo, setIdGrupo] = useState(0)
   
-  const obtenerGrupoClickeado=(g, id)=>{
-    setIdGrupo(id)
-    setGrupo(g)
-  }
-  localStorage.setItem("id_grupo", id_grupo);
-  localStorage.setItem("grupo", JSON.stringify(grupo));
-
-
-
   useEffect(() => {
   const cargarGrupos = async () => {
     const data = await obtenerGrupoPorIdUsuario(id_usuario);
@@ -40,10 +29,8 @@ const Nav = () => {
         <ul>
       {grupos.map(
         (grupo) => (
-              <li key={grupo.id_grupo} value={grupo.id_grupo}>
-                <button onClick={() => {
-                  obtenerGrupoClickeado(grupo, grupo.id_grupo)
-                }} className='btn bg-jared text-light'>{grupo.nombre}</button>
+              <li className="mt-3" key={grupo.id_grupo} value={grupo.id_grupo}>
+                <button onClick={() => onSeleccionarGrupo(grupo, grupo.id_grupo)} className='btn bg-jared fw-bold text-black'>{grupo.nombre}</button>
                 </li>
         )
       )}
