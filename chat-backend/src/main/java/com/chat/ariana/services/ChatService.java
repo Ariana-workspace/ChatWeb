@@ -25,7 +25,6 @@ public class ChatService {
     public Mensaje procesarMensaje(Mensaje mensaje) {
         try {
             mensaje.setFecha(LocalDateTime.now());
-            System.out.println("Fecha justo despues de setearla: " + mensaje.getFecha());
             Grupo grupo = grupoService.obtenerGrupoPorId(mensaje.getId_grupo());
             Usuario usuario = usuarioService.obtenerUsuarioPorId(mensaje.getId_usuario());
             mensajesService.agregarMensaje(mensaje);
