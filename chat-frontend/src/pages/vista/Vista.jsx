@@ -18,7 +18,7 @@ const Vista = () => {
             </ul>
         <div className='navegacion'>
             
-            <Perfil/> 
+            {/* <Perfil/>  */}
             <Amigos/>
             <Config/>
         </div>
