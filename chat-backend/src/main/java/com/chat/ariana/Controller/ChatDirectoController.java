@@ -20,8 +20,8 @@ public class ChatDirectoController {
         this.chatDirectoService = chatDirectoService;
     }
 
-    @PostMapping ("/crearchat")
-    public Chat_directo getMethodName(@PathVariable Chat_directo chat_directo) {
+    @PostMapping("/crearchat")
+    public Chat_directo crearChat_directo(@PathVariable Chat_directo chat_directo) {
         return chatDirectoService.crearChatDirecto(chat_directo);
     }
 
@@ -31,8 +31,8 @@ public class ChatDirectoController {
     }
 
     @DeleteMapping("/eliminarchat/{id_chat_directo}")
-    public void eliminarChat(@PathVariable Integer id_chat_directo){
-        
+    public void eliminarChat(@PathVariable Integer id_chat_directo) {
+        chatDirectoService.eliminarChatUnico(id_chat_directo);
     }
 
 }
