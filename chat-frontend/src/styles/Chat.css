@@ -4,13 +4,13 @@
     height: 80vh;
     width: 100%;
     margin-top: 1rem;
-    background-color: rgb(21, 21, 21);
+    background-color: rgba(24, 24, 24, 0.633);
     border-radius: 1rem;
     overflow-y: auto;
 }
 .contenedor-mensaje {
     padding: .5rem 1rem;
-    width: 40%;
+    width: fit-content;
     height:auto;
 }
 .contenedor-mensaje h3{
@@ -18,15 +18,15 @@
     font-size: 1rem;
 }
 .mensaje{
-    background-color: #111111;
-    color:lightblue;
+    background-color:#212121;
+    color:rgb(248, 246, 246);
     padding: 0.5rem .2rem 0.01rem;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.284);
 }
 .contenedor-mensaje p{
     display: flex;
-    padding: 0.01rem 1rem;
+    padding: 0.01rem .7rem 0.01rem 1rem;
 }
 .c-escribir{
     margin: 1vh auto;
@@ -40,13 +40,15 @@
     align-items: center;
 }
 .txt-write{
-    background: none;
+    background-color: #212121;
     border:none;
     width: 95%;
     outline: none;
     padding: 1vh 2vh;
     color:white;
 }
+
+
 .btn-chat{
     border:none;
     border-radius: 50px;

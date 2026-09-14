@@ -24,9 +24,9 @@ const Login = () => {
   }
   return (
     <div className="container-login d-flex  justify-content-center ">
-      <div className='w-20 h-70 d-flex  justify-content-center m-auto row-cols-1'>
-      <div className=' col'>
-        <h1 className='text-center '>Login</h1>
+      <div className='w-20 rounded bg-body p-4 h-40 d-flex justify-content-center m-auto row-cols-1'>
+      <div className='col '>
+        <h1 className='text-center text-jared'>Login</h1>
         <form onSubmit={iniciarSesion} className='d-flex flex-column '>
           <input 
           type="text"
@@ -46,7 +46,7 @@ const Login = () => {
         </form>
         <button onClick={()=>{
             irARegistrarse()
-          }} className='text-jared bg-body btn mt-3 fz-20'>Registrarse</button>
+          }} className='text-jared btn-max bg-body btn mt-3 fz-20'>Registrarse</button>
         </div>
       </div>
     </div>

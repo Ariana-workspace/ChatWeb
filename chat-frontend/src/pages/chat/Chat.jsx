@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useEffect, useState} from 'react'
 import { conectarWebSocket, suscribirse,enviarMensaje,desconectarWebSocket } from '../../services/chatService'
 import '../../styles/Chat.css'

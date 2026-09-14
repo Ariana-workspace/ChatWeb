@@ -3,13 +3,23 @@
         background-color: #591ec7;
     }
     .bg-jared {
-        background-color: rgb(170, 78, 44);
+        background-color: rgb(49, 112, 46);
     }
     .text-jared{
-        color: #fe3f1e;
+        color: #20a03c;
+    }
+    .bg-main-colo{
+        background-color: #212121;
+    }
+    .name-user{
+        color:#304d30
     }
     .btn{
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.308);
+        box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.308);
+    }
+    .btn-max{
+        box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.308);
+        width: 100%;
     }
     .fz-20 {
         font-size: 1.15rem;

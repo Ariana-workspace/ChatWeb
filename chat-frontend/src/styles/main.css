@@ -1,6 +1,10 @@
 .contenedor-global{
     display: flex;
-    background-color: #1d1d1d;
+    background: linear-gradient(to right,
+        #020202,
+        #141414,
+        #1a1f1a,
+        #141414);
     justify-content: space-around;
     align-items: center;
     height: 100vh;
@@ -11,9 +15,10 @@
     flex-direction: column;
     height: 85vh;
     width: 100%;
+    padding: 1vh 2vh;
     margin-top: auto;
     margin-bottom: 1rem;
-    background-color: rgb(21, 21, 21);
+    background-color: rgba(21, 21, 21, 0.774);
     border-radius: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.284);
 }
@@ -33,7 +38,7 @@
     height: 95vh;
     display: flex;
     margin-top: 1rem;
-    background-color: rgb(21, 21, 21);
+    background-color:#111111;
     border-radius: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.284);
 }
