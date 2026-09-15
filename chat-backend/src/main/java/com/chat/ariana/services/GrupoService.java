@@ -30,4 +30,13 @@ public class GrupoService {
                 .retrieve()
                 .body(Grupo.class);
     }
+    public Grupo crearGrupo(Grupo grupo){
+        Grupo grupito = restClient
+                .post()
+                .uri("https://ariworkplace.alwaysdata.net/grupo_chat.php")
+                .body(grupo)
+                .retrieve()
+                .body(Grupo.class);
+        return crearGrupo()
+    }
 }

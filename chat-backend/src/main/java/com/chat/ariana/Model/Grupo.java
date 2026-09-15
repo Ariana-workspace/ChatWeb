@@ -11,4 +11,5 @@ public class Grupo {
     Integer id_grupo;
     String nombre;
     String descripcion;
+    String imagen;
 }
