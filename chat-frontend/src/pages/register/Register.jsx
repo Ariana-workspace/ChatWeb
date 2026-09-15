@@ -23,7 +23,7 @@ const Register = () => {
     <div className="container-login d-flex  justify-content-center ">
       <div className='w-20 h-70 d-flex  justify-content-center m-auto row-cols-1'>
       <div className=' col'>
-        <h1 className='text-center '>Registar</h1>
+        <h1 className='text-center text-jared'>Registar</h1>
         <form onSubmit={registrar} className='d-flex flex-column '>
             <input 
             type="text"
