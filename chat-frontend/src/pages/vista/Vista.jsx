@@ -1,10 +1,9 @@
 import "../../styles/Vista.css"
 import {useState} from "react"
-import Config from "./Config"
-import Perfil from "./Perfil"
-import Amigos from "./Amigos"
+import Config from "./config/Config"
+import Perfil from "./perfil/Perfil"
+import Amigos from "./friends/Amigos"
 const Vista = () => {
-  const [seleccionado, setSeleccionado] = useState(false)
   const [perfil, setPerfil] = useState(false)
   const [amigos, setAmigos] = useState(false)
   const [config, setConfig] = useState(false)

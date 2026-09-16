@@ -1,4 +1,4 @@
-const Mensaje = ({ usuario, contenido, fecha }) => {
+const Message = ({ usuario, contenido, fecha }) => {
   return (
     <div className="contenedor-mensaje">
       <h3 className="name-user">{usuario}</h3>
@@ -14,4 +14,4 @@ const Mensaje = ({ usuario, contenido, fecha }) => {
   );
 };
 
-export default Mensaje;
+export default Message;

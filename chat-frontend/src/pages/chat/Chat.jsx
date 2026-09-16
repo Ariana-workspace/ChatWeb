@@ -3,7 +3,7 @@ import { useEffect, useState} from 'react'
 import { conectarWebSocket, suscribirse,enviarMensaje,desconectarWebSocket } from '../../services/chatService'
 import '../../styles/Chat.css'
 import '../../styles/main.css'
-import Mensaje from '../../components/Mensaje'
+import Mensaje from '../../components/Message'
 import { usuarioPorId } from '../../services/usuarioService'
 import { historialDeMensajePorGrupo, historialMensajes } from '../../services/mensaje'
 const Chat = ({idGrupo}) => {
@@ -55,7 +55,7 @@ useEffect(() => {
         <div className='contenedor-chat'>
         {chat.map((m,i) => 
             (
-                <Mensaje key={i} usuario={user.nombre} contenido={m.contenido} fecha={m.fecha} />
+                <Message key={i} usuario={user.nombre} contenido={m.contenido} fecha={m.fecha} />
             )
          )
         }

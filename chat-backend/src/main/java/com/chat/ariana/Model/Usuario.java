@@ -17,5 +17,6 @@ public class Usuario {
     LocalDate fecha_union;
     String genero;
     String descripcion;
+    String foto;
 }
 

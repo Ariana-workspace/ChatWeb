@@ -37,6 +37,6 @@ public class GrupoService {
                 .body(grupo)
                 .retrieve()
                 .body(Grupo.class);
-        return crearGrupo()
+        return grupito;
     }
 }
