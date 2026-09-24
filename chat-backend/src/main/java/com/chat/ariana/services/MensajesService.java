@@ -4,7 +4,6 @@ import com.chat.ariana.Model.Mensaje;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
-import tools.jackson.databind.ObjectMapper;
 
 import java.util.List;
 

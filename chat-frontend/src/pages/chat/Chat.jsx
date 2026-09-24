@@ -3,9 +3,10 @@ import { useEffect, useState} from 'react'
 import { conectarWebSocket, suscribirse,enviarMensaje,desconectarWebSocket } from '../../services/chatService'
 import '../../styles/Chat.css'
 import '../../styles/main.css'
-import Mensaje from '../../components/Message'
+import "../../components/Message"
 import { usuarioPorId } from '../../services/usuarioService'
 import { historialDeMensajePorGrupo, historialMensajes } from '../../services/mensaje'
+import Message from '../../components/Message'
 const Chat = ({idGrupo}) => {
   const [chat, setChat] = useState([]);
   const [mensaje, setMensaje] = useState("");

@@ -5,5 +5,6 @@ export const usuario =(id_usuario, nombre,email, password,fecha_union, genero, d
     password,
     fecha_union: new Date(),
     genero, 
-    descripcion
+    descripcion,
+    foto
 })

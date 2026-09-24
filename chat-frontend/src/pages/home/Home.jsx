@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react"
 import Chat from '../chat/Chat'
-import Nav from "../../components/Nav"
+import Nav from "../../components/nav.jsx"
 import Vista from "../vista/Vista"
 const Home = () => {
    const [idGrupo, setIdGrupo] = useState(localStorage.getItem("id_grupo") || null);

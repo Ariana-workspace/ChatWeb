@@ -13,6 +13,8 @@ export async function obtenerGrupos(){
 
 export async function obtenerGrupoPorId(id_grupo) {
     const token = localStorage.getItem("token");
+    console.log("TOKEN:", token);
+    console.log("ID GRUPO:", id_grupo);
     const response = await axios.get(`${URL}/grupos/${id_grupo}`, {
     headers: {
       Authorization: `Bearer ${token}`

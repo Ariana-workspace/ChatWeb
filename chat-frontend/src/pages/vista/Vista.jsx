@@ -1,4 +1,4 @@
-import "../../styles/Vista.css"
+import "./styles/Vista.css"
 import {useState} from "react"
 import Config from "./config/Config"
 import Perfil from "./perfil/Perfil"
@@ -23,7 +23,6 @@ const Vista = () => {
         setAmigos(false)
 
     }
-
   }
   return (
     <>
@@ -31,7 +30,7 @@ const Vista = () => {
       <ul className='header-nav'>
               <li><button onClick={() => cambiarPagina("perfil")} className={perfil ? "btn text-white bg-jared" : "btn black-btn text-white"} >perfil</button></li> 
               <li><button onClick={() => cambiarPagina("amigos")}  className={amigos ? "btn text-white bg-jared" : "btn black-btn  text-white"}>amigos</button></li> 
-              <li><button onClick={() => cambiarPagina("config")}  className={perfil ? "btn text-white bg-jared" : "btn black-btn  text-white"}>config</button></li>
+              <li><button onClick={() => cambiarPagina("config")}  className={config ? "btn text-white bg-jared" : "btn black-btn  text-white"}>config</button></li>
             </ul>
         <div className='navegacion'>
             

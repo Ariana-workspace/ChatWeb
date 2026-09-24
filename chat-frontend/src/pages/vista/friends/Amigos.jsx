@@ -1,5 +1,8 @@
-import React from 'react'
-
+import { useState } from "react"
+import MyFriends from './MyFriends'
+import Add from "./Add"
+import Solicitudes from './Solicitudes'
+import "../styles/Friends.css"
 const Amigos = () => {
   const [friend, setFriend] = useState(false)
   const [add, setAdd] = useState(false)
@@ -26,15 +29,14 @@ const Amigos = () => {
     <div className='amigos'>
       {/* <img src="" alt="" /> */}
       <ul className='opciones'>
-        <li><button onClick={() => cambiarSeccionAmigo("perfil")} className='bg-jared'>my frie</button></li>
-        <li><button onClick={() => cambiarSeccionAmigo("perfil")} className='bg-jared'>add</button></li>
-        <li><button onClick={() => cambiarSeccionAmigo("perfil")} className='bg-jared'>solicitudes</button></li>
+        <li><button onClick={() => cambiarSeccionAmigo("friend")} className='bg-jared'>my frie</button></li>
+        <li><button onClick={() => cambiarSeccionAmigo("add")} className='bg-jared'>add</button></li>
+        <li><button onClick={() => cambiarSeccionAmigo("solicitud")} className='bg-jared'>solicitudes</button></li>
       </ul>
-      <input className='txt-write' type="text" placeholder='Buscar'/>
-      {/* Debemos traer a los amigos del usuario */}
-      <ul className='lista-amigos'>
-        <li>amigo 1</li>
-      </ul>
+      
+      {friend && <MyFriends/>}
+      {add && <Add/>}
+      {solicitud && <Solicitudes/>}
       
     </div>
   )

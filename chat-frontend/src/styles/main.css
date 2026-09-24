@@ -1,9 +1,10 @@
 .contenedor-global{
     display: flex;
-    background: linear-gradient(to right,
-        #020202,
+    background: linear-gradient(45deg,
+        #1b2e7c,
         #141414,
-        #1a1f1a,
+        #243061,
+        #1b2e7c,
         #141414);
     justify-content: space-around;
     align-items: center;
@@ -38,7 +39,7 @@
     height: 95vh;
     display: flex;
     margin-top: 1rem;
-    background-color:#111111;
+    background-color:#283a9265;
     border-radius: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.284);
 }

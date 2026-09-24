@@ -10,7 +10,7 @@ export async function obtenerSolicitudesEnviadas(id_usuario){
     });
     return response.data;
 }
-export async function obtenerSolicitudesEnviadas(id_amigo){
+export async function obtenerSolicitudesRecibidas(id_amigo){
     const token = localStorage.getItem("token")
     const response = await axios.get(`${URL}/amigos/recibidas/${id_amigo}`, {
     headers: {

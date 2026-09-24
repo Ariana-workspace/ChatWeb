@@ -33,7 +33,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // Los tokens JWT se envían como "Bearer <token>"
         // Si el encabezado no existe o no comienza con Bearer, omitir este filtro
-        if(authHeader == null || !authHeader.startsWith("Bearer")){
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request,response);
             return;
         }
@@ -43,14 +43,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         try{
             final String username = jwtService.extractUsername(jwt);
+            System.out.println("JWT recibido");
+            System.out.println("Username del JWT: " + username);
 
             // Si tenemos un nombre de usuario y todavía no existe una autenticación
             if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
                 // Cargar los datos del usuario desde la base de datos
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+                System.out.println("Usuario encontrado: " + userDetails.getUsername());
 
+                boolean valido = jwtService.isTokenValid(jwt, userDetails);
+
+                System.out.println("JWT válido: " + valido);
                 // Validar el token
-                if(jwtService.isTokenValid(jwt,userDetails)){
+                if(valido){
                     // Crear el token de autenticación
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                             userDetails,
@@ -61,6 +67,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     // Establecer la autenticación en el contexto de seguridad
                     SecurityContextHolder.getContext().setAuthentication(authToken);
+                    System.out.println("AUTENTICACIÓN ESTABLECIDA");
                 }
             }
         }catch (JwtException | IllegalArgumentException e){

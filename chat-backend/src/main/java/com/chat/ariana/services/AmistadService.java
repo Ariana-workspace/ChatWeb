@@ -1,7 +1,6 @@
 package com.chat.ariana.services;
 
 import com.chat.ariana.Model.Amistad;
-import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
