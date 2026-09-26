@@ -21,31 +21,28 @@ const Register = () => {
   
   return (
     <div className="container-login d-flex  justify-content-center ">
-      <div className='w-20 h-70 d-flex  justify-content-center m-auto row-cols-1'>
+      <div className='form p-4 d-flex  justify-content-center m-auto row-cols-1'>
       <div className=' col'>
-        <h1 className='text-center text-jared'>Registar</h1>
+        <h1 className='text-center txt-violet'>Registar</h1>
         <form onSubmit={registrar} className='d-flex flex-column '>
             <input 
             type="text"
-            placeholder="Nombre"
-            className="form-control my-3"
+            placeholder="Nombre de usuario"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
             />
             <input 
             type="text"
             placeholder="Email"
-            className="form-control my-3"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             />
             <input 
             type="password" placeholder='Contraseña' 
-            className='form-control mb-3'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             />
-          <button type="submit" className='text-jared bg-body btn mt-3 fz-20'>Enviar a la basesita de datos :3!</button>
+          <button type="submit" className='btn-register mt-3 fz-20'>Enviar a la basesita de datos :3!</button>
         </form>
         </div>
       </div>

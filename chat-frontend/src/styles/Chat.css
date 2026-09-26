@@ -4,7 +4,7 @@
     height: 80vh;
     width: 100%;
     margin-top: 1rem;
-    background-color: rgba(30, 37, 61, 0.471);
+    background: radial-gradient(circle, #1f2569 0%, #121212 70%);
     border-radius: 1rem;
     overflow-y: auto;
 }
@@ -18,7 +18,7 @@
     font-size: 1rem;
 }
 .mensaje{
-    background-color:#212121;
+    background-color:#1C2157;
     color:rgb(248, 246, 246);
     padding: 0.5rem .2rem 0.01rem;
     border-radius: 0.5rem;
@@ -34,13 +34,13 @@
     width: 98%;
     height: 8vh;
     border-radius: 50px;
-    background-color: #212121;
+    background-color: #181a2f;
     padding: 2vh;
     justify-content: center;
     align-items: center;
 }
 .txt-write{
-    background-color: #212121;
+    background-color: #181a2f !important;
     border:none;
     width: 95%;
     outline: none;
@@ -60,7 +60,7 @@
     padding: 1px;
 }
 ::-webkit-scrollbar-thumb{
-    background-color: #1f1f1f;
+    background-color: #201c4f;
     height: 1rem;
     border-radius: 1rem;
 }

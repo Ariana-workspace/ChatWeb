@@ -3,16 +3,19 @@
         background-color: #591ec7;
     }
     .bg-jared {
-        background-color: rgb(70, 70, 70);
+        background-color: rgb(44, 39, 87);
     }
     .text-jared{
-        color: #9f9f9f;
+        color: #2d2980;
     }
     .bg-main-colo{
         background-color: #212121;
     }
     .name-user{
-        color:#434343
+        color: #3e3683;
+    }
+    .bg-violet{
+        background-color: #2d2980;
     }
     .btn{
         box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.308);

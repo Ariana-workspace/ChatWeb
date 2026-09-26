@@ -24,29 +24,29 @@ const Login = () => {
   }
   return (
     <div className="container-login d-flex  justify-content-center ">
-      <div className='w-20 rounded bg-body p-4 h-40 d-flex justify-content-center m-auto row-cols-1'>
+      <div className='form p-4 d-flex justify-content-center m-auto row-cols-1'>
       <div className='col '>
-        <h1 className='text-center text-jared'>Login</h1>
+        <div className='title-login'><b className='text-white'>Chat</b><b className='txt-violet'>Web</b></div>
+        <div className='frase'><p>Conecta, comparte, conversa</p></div>
         <form onSubmit={iniciarSesion} className='d-flex flex-column '>
           <input 
           type="text"
           placeholder="Email"
-          className="form-control my-3"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           />
           <input 
-          type="password" placeholder='Contraseña' 
-          className='form-control mb-3'
+          type="password" placeholder='Contraseña'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           />
-          <button type='submit' className='btn bg-jared text-white fw-semibold fz-20'>Iniciar Sesión</button>
+          <button type='submit' className='btn-login  fz-20'>Iniciar Sesión</button>
           
         </form>
         <button onClick={()=>{
             irARegistrarse()
-          }} className='text-jared btn-max bg-body btn mt-3 fz-20'>Registrarse</button>
+          }} className='text-jared btn-register mt-3 fz-20'>Registrarse</button>
+          <div className='frase'><p>Las mejores conversaciones inician aquí.</p></div>
         </div>
       </div>
     </div>

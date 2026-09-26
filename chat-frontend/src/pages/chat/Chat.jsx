@@ -63,7 +63,7 @@ useEffect(() => {
       </div>
        <div className='c-escribir'>
         <input className='txt-write' type="text" value={mensaje} onChange={(e) => setMensaje(e.target.value)} />
-        <button className='btn-chat bg-jared text-white' onClick={handleEnviar}>↑</button>
+        <button className='btn-chat bg-violet text-white' onClick={handleEnviar}>↑</button>
       </div>
 
       </div>
