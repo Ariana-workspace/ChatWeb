@@ -23,19 +23,8 @@ public class ChatService {
     }
 
     public Mensaje procesarMensaje(Mensaje mensaje) {
-        try {
-            mensaje.setFecha(LocalDateTime.now());
-            Grupo grupo = grupoService.obtenerGrupoPorId(mensaje.getId_grupo());
-            Usuario usuario = usuarioService.obtenerUsuarioPorId(mensaje.getId_usuario());
-            mensajesService.agregarMensaje(mensaje);
-            System.out.println("Grupo: " + grupo);
-            System.out.println("Usuario: " + usuario);
-        } catch (Exception e) {
-            e.printStackTrace(); // esto te muestra el stack trace REAL en consola
-            throw new RuntimeException("Error procesando mensaje: " + e.getMessage(), e);
-        }
-
-        // guardar mediante api php
+        mensaje.setFecha(LocalDateTime.now());
+        mensajesService.agregarMensaje(mensaje);
         return mensaje;
     }
 }

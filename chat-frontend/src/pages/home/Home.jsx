@@ -3,8 +3,8 @@ import Chat from '../chat/Chat'
 import Nav from "../../components/nav.jsx"
 import Vista from "../vista/Vista"
 const Home = () => {
-   const [idGrupo, setIdGrupo] = useState(localStorage.getItem("id_grupo") || null);
-  const [grupo, setGrupo] = useState(JSON.parse(localStorage.getItem("grupo") || "null"));
+   const [idGrupo, setIdGrupo] = useState(null);
+  const [grupo, setGrupo] = useState(null);
 
   const handleSeleccionarGrupo = (g, id) => {
     setGrupo(g);

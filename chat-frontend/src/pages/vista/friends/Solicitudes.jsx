@@ -1,37 +1,46 @@
 import {useState, useEffect
 } from 'react'
 import { usuarioPorId } from '../../../services/usuarioService';
+import { obtenerSolicitudesRecibidas } from '../../../services/solicitudesAmistad';
 
 
 const Solicitudes = () => {
-  const [solicitudes, setSolicitudes] = useState([]);
-  const [amigos, setAmigos] = useState([])
+  const [solicitudes, setSolicitudes] = useState([])
     const id_usuario =localStorage.getItem("id_usuario");
-    useEffect(() =>{
-      const cargarUsuarioUwu= async () =>{
-        const data = await obtenerSolicitudesEnviadas(id_usuario);
-        setSolicitudes(data)
-        console.log(data)
-        return data;
-        
-      }
-      const cargarAmigos= async () =>{
-        const data = await usuarioPorId(id_usuario);
-        setAmigos(data)
-        console.log(data)
-        return data;
-      }
+
+    const aceptarSoli =(id_usuario) =>{
       
-      cargarUsuarioUwu()
+    }
+    useEffect(() =>{
+      const cargarAmigos= async () =>{
+        const data = await obtenerSolicitudesRecibidas(id_usuario);
+        const solicitudesCompletas = await Promise.all(
+          data.map(async (ug)=>{
+            const amigo = await usuarioPorId(ug.id_usuario);
+            return amigo;
+          })
+        )
+        setSolicitudes(solicitudesCompletas);
+        console.log(solicitudes)
+      }
+      cargarAmigos()
     },[id_usuario]);
   return (
-    <div>
+    <div className="contenedor-amigos">
       <input className='txt-write' type="text" placeholder='Buscar'/>
       
       <ul className='lista-amigos'>
-        {solicitudes.map((m,i)=>
+        {solicitudes.map((solicitud)=>
         (
-        <li>{m.id_amigo}</li>
+        <li className='text-white'>
+        {solicitud.nombre}
+        <button className="btn-sumar" onClick={()=>{aceptarSoli(solicitud.id_usuario)}}>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 10L4 8L3 9L6 12L13 5L12 4L6 10Z" fill="#4dea89"/>
+        </svg>
+        </button>
+        <button className="btn-quitar" value="rechazar"></button>
+        </li>
       )
       )}
       </ul>

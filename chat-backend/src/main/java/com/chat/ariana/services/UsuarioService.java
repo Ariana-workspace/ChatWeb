@@ -23,6 +23,15 @@ public class UsuarioService {
                                 .body(new ParameterizedTypeReference<List<Usuario>>() {
                                 });
         }
+        public List<Usuario> buscarUsuario(String texto) {
+            return restClient
+                    .get()
+                    .uri("https://ariworkplace.alwaysdata.net/usuarios_chat.php", uri -> uri
+                            .queryParam("buscar", texto)
+                            .build())
+                    .retrieve()
+                    .body(new ParameterizedTypeReference<List<Usuario>>() {});
+        }
 
         public Usuario obtenerUsuarioPorId(Integer id_usuario) {
             List<Usuario> lista = restClient

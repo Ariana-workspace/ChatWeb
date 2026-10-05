@@ -1,10 +1,11 @@
-/* ************************************ */
-.amigos{
-    margin:0vh auto;
+/* MIS AMIGOS */
+.amigos {
+    margin: 0 auto;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    gap: 0;
 }
+
 .opciones{   
     display: flex;
     flex-direction: row;
@@ -16,12 +17,15 @@
 }
 ul{
     margin: 0 0 .1rem 0;
+    
 }
 li{
     margin-right: 1rem;
+    
 }
 .amigos ul li{
     margin-right: .5rem;
+    
 }
 .amigos ul button{
     border: none;
@@ -30,13 +34,20 @@ li{
     font-weight: 700;
     box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.338);
 }
+.contenedor-amigos{
+    margin-top: 1rem;
+    width: 100%;
+
+}
 .lista-amigos{
     list-style-type: none;
-    width: 90%;
     margin: 0 0 2rem 0;
     padding: 1vh 1vh;
 }
 .lista-amigos li{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: rgb(26, 26, 26);
     margin:.5rem 0;
     padding: 1vh;
@@ -56,4 +67,29 @@ li{
     color:white;
 }
 /* ******************************** */
+/* SOLICITUDES*/
 
+.btn-quitar {
+  background: none;
+  border: none;
+  color: #7b4dea; /* azul violeta */
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: .5rem;
+}
+.btn-quitar::before {
+  content: '×'; /* símbolo de "quitar" */
+}
+
+/* AÑADIR*/
+
+.btn-sumar{
+    background: none;
+  border: none;
+  color: #4dea89; /* azul violeta */
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: auto;
+}

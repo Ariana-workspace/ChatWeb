@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public class GrupoService {
     private final RestClient restClient;
+    String URL = "https://ariworkplace.alwaysdata.net/grupo_chat.php";
 
     public GrupoService(RestClient.Builder builder){
         this.restClient = builder.build();
@@ -18,22 +19,24 @@ public class GrupoService {
     public List<Grupo> obtenerGrupos(){
         return restClient
                 .get()
-                .uri("https://ariworkplace.alwaysdata.net/grupo_chat.php")
+                .uri(URL)
                 .retrieve()
                 .body(new ParameterizedTypeReference<List<Grupo>>() {});
     }
 
+
     public Grupo obtenerGrupoPorId(Integer id_grupo){
-        return restClient
-                .get()
-                .uri("https://ariworkplace.alwaysdata.net/grupo_chat.php?id_grupo="+id_grupo)
+        List<Grupo> grupos = restClient.get()
+                .uri(URL + "?id_grupo=" + id_grupo)
                 .retrieve()
-                .body(Grupo.class);
+                .body(new ParameterizedTypeReference<List<Grupo>>() {});
+
+        return grupos.isEmpty() ? null : grupos.get(0);
     }
     public Grupo crearGrupo(Grupo grupo){
         Grupo grupito = restClient
                 .post()
-                .uri("https://ariworkplace.alwaysdata.net/grupo_chat.php")
+                .uri(URL)
                 .body(grupo)
                 .retrieve()
                 .body(Grupo.class);

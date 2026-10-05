@@ -36,12 +36,9 @@ export async function enviarSolicitud(id_usuario, id_amigo, estado ){
 export async function quitarSolicitud(id ){
     const token = localStorage.getItem("token")
     const response = await axios.post(
-    `${URL}/amigos/quitarsoli/${id}`, 
-    {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
+  `${URL}/amigos/quitarsoli/${id}`,
+  {}, // body vacío
+  { headers: { Authorization: `Bearer ${token}` } } // config
   );
     return response.data;
 }

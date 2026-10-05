@@ -1,5 +1,5 @@
 
-import { useEffect, useState} from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { conectarWebSocket, suscribirse,enviarMensaje,desconectarWebSocket } from '../../services/chatService'
 import '../../styles/Chat.css'
 import '../../styles/main.css'
@@ -12,8 +12,9 @@ const Chat = ({idGrupo}) => {
   const [mensaje, setMensaje] = useState("");
   const [user, setUser] = useState([])
   const id_usuario =localStorage.getItem("id_usuario");
-  
-  const handleEnviar = () => {
+  const chatRef = useRef(null);
+  const handleEnviar = (e) => {
+    e.preventDefault();
   if (!mensaje.trim()) return; // evita mandar vacío
   enviarMensaje({
       id_grupo:idGrupo, 
@@ -47,13 +48,20 @@ useEffect(() => {
     };
     
 }, [idGrupo]);
+
+useEffect(() => {
+    if (chatRef.current) {
+        chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+}, [chat]);
+
     
   return (
     
 
       <div className='chat'>
         
-        <div className='contenedor-chat'>
+        <div className='contenedor-chat' ref={chatRef}>
         {chat.map((m,i) => 
             (
                 <Message key={i} usuario={user.nombre} contenido={m.contenido} fecha={m.fecha} />
@@ -61,10 +69,10 @@ useEffect(() => {
          )
         }
       </div>
-       <div className='c-escribir'>
+       <form className='c-escribir'>
         <input className='txt-write' type="text" value={mensaje} onChange={(e) => setMensaje(e.target.value)} />
         <button className='btn-chat bg-violet text-white' onClick={handleEnviar}>↑</button>
-      </div>
+      </form>
 
       </div>
   

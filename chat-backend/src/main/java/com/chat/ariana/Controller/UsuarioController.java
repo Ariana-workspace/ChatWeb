@@ -2,10 +2,9 @@ package com.chat.ariana.Controller;
 
 import com.chat.ariana.Model.Usuario;
 import com.chat.ariana.services.UsuarioService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/usuario")
@@ -19,5 +18,13 @@ public class UsuarioController {
     @GetMapping("/{id_usuario}")
     public Usuario obtenerUsuarioPorId(@PathVariable Integer id_usuario){
         return usuarioService.obtenerUsuarioPorId(id_usuario);
+    }
+    @GetMapping
+    public List<Usuario> listar(){
+        return usuarioService.obtenerUsuarios();
+    }
+    @GetMapping("/buscar")
+    public List<Usuario> buscarUsuarios(@RequestParam String texto){
+        return usuarioService.buscarUsuario(texto);
     }
 }

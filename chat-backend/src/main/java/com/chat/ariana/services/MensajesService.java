@@ -2,6 +2,7 @@ package com.chat.ariana.services;
 
 import com.chat.ariana.Model.Mensaje;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -30,19 +31,19 @@ public class MensajesService {
                 .body(Mensaje.class);
     }
 
-    public Mensaje agregarMensaje(Mensaje mensaje) {
-        System.out.println("Fecha en Java antes de mandar: " + mensaje.getFecha());
-
-        String raw = restClient
-                .post()
-                .uri("https://ariworkplace.alwaysdata.net/mensajes.php")
-                .body(mensaje)
-                .retrieve()
-                .body(String.class);
-
-        System.out.println("RESPUESTA PHP MENSAJE: " + raw);
-
-        return mensaje;
+    @Async
+    public void agregarMensaje(Mensaje mensaje) {
+        try {
+            restClient
+                    .post()
+                    .uri("https://ariworkplace.alwaysdata.net/mensajes.php")
+                    .body(mensaje)
+                    .retrieve()
+                    .toBodilessEntity();
+            System.out.println("Hilo: " + Thread.currentThread().getName());
+        } catch (Exception e) {
+            System.err.println("No se pudo guardar el mensaje: " + e.getMessage());
+        }
     }
 
 

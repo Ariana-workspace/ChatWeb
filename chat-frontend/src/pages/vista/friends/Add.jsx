@@ -1,12 +1,80 @@
-import React from 'react'
+import {useState, useEffect
+} from 'react'
+import { usuarioPorId } from '../../../services/usuarioService';
+import { obtenerSolicitudesEnviadas } from '../../../services/solicitudesAmistad';
+
 
 const Add = () => {
+  const [amigos, setAmigos] = useState([])
+  const [usuarios, setUsuarios] = useState([])
+  const id_usuario =localStorage.getItem("id_usuario");
+  const [q, setQ] = useState("");
+
+  const handleBuscar = async (e) => {
+    const texto = e.target.value;
+    setQ(texto);
+    if(!texto.trim()){
+      setUsuarios([])
+      return;
+    }
+    const usuario = await usuarioPorId(texto);
+    setUsuarios(usuario ? [usuario] : []);
+  }
+  const add =(id_usuario) =>{
+    const usuario = await usuarioPorId(texto);
+  }
+
+  useEffect(() =>{
+        const cargarAmigos= async () =>{
+          const data = await obtenerSolicitudesEnviadas(id_usuario);
+          const amigosCompletos = await Promise.all(
+            data.map(async (ug)=>{
+              const amigo = await usuarioPorId(ug.id_amigo);
+              return amigo;
+            })
+          )
+          setAmigos(amigosCompletos);
+          console.log(amigos)
+        }
+        cargarAmigos()
+  },[id_usuario]);
+
+
   return (
-    <div>
-      <input className='txt-write' type="text" placeholder='Buscar'/>
-      {/* Debemos traer a los amigos del usuario */}
+    <div className="contenedor-amigos">
+      <input className='txt-write' type="text" placeholder='Buscar'
+        value={q} onChange={handleBuscar}
+      />
+      
       <ul className='lista-amigos'>
-        <li>amigo 2</li>
+        {Array.isArray(usuarios) && usuarios.map((usuario)=>
+        (
+        <li className='text-white'>
+        {usuario.nombre}
+         
+        <button className="btn-sumar" onClick={()=>{add(usuario.id_usuario)}}>
+        
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 3V13M3 8H13" stroke="#4DEA89" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+
+
+        </button>
+        <button className="btn-quitar" title="Quitar solicitud"></button>
+        
+        </li>
+      )
+      )}
+        {amigos.map((amigo)=>
+        (
+        <li className='text-white'>
+        {amigo.nombre}
+         
+        <button className="btn-quitar" title="Quitar solicitud"></button>
+        
+        </li>
+      )
+      )}
       </ul>
     </div>
   )

@@ -20,7 +20,16 @@ export async function usuarioPorId(id_usuario){
     })
     return response.data;
 }
-
+export async function buscarUsuarios(){
+    const token = localStorage.getItem("token");
+    const response = await axios.get(`${URL}/usuario/buscar`, {
+    params: { texto, id_usuario },
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+    })
+    return response.data;
+}
 export async function register(nombre, email, password){
     const response = await axios.post(`${URL}/chat/auth/register`,{
         nombre,

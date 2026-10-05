@@ -44,6 +44,7 @@ public class AmistadService {
         System.out.println("Solicitud: " + raw);
     }
 
+
     public List<Amistad> obtenerSolicitudesEnviadas(Integer id_usuario) {
         return restClient
                 .get()
