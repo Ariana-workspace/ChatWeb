@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react"
 import Chat from '../chat/Chat'
-import Nav from "../../components/nav.jsx"
+import Nav from "../../components/Nav.jsx"
 import Vista from "../vista/Vista"
 const Home = () => {
    const [idGrupo, setIdGrupo] = useState(null);
