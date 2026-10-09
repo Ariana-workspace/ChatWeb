@@ -1,12 +1,12 @@
 import {useState, useEffect
 } from 'react'
 import { usuarioPorId } from '../../../services/usuarioService';
-import { obtenerSolicitudesEnviadas } from '../../../services/solicitudesAmistad';
+import { enviarSolicitud, obtenerSolicitudesEnviadas } from '../../../services/solicitudesAmistad';
 
 
 const Add = () => {
   const [amigos, setAmigos] = useState([])
-  const [usuarios, setUsuarios] = useState([])
+  const [usuariosABuscar, setUsuariosABuscar] = useState([])
   const id_usuario =localStorage.getItem("id_usuario");
   const [q, setQ] = useState("");
 
@@ -14,14 +14,16 @@ const Add = () => {
     const texto = e.target.value;
     setQ(texto);
     if(!texto.trim()){
-      setUsuarios([])
+      setUsuariosABuscar([])
       return;
     }
     const usuario = await usuarioPorId(texto);
-    setUsuarios(usuario ? [usuario] : []);
+    setUsuariosABuscar(usuario ? [usuario] : []);
   }
-  const add =(id_usuario) =>{
-    const usuario = await usuarioPorId(texto);
+  const add = async (id_amigo, estado ) =>{
+    const amigo = await enviarSolicitud(id_usuario, id_amigo, estado);
+    console.log(id_usuario, id_amigo, estado)
+    return amigo;
   }
 
   useEffect(() =>{
@@ -47,12 +49,12 @@ const Add = () => {
       />
       
       <ul className='lista-amigos'>
-        {Array.isArray(usuarios) && usuarios.map((usuario)=>
+        {Array.isArray(usuariosABuscar) && usuariosABuscar.map((user)=>
         (
         <li className='text-white'>
-        {usuario.nombre}
+        {user.nombre}
          
-        <button className="btn-sumar" onClick={()=>{add(usuario.id_usuario)}}>
+        <button className="btn-sumar" onClick={()=>{add(user.id_usuario, "PENDIENTE")}}>
         
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M8 3V13M3 8H13" stroke="#4DEA89" stroke-width="2" stroke-linecap="round"/>
