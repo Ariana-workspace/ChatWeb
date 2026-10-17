@@ -16,4 +16,5 @@ public class Mensaje {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     LocalDateTime fecha;
+    Integer id_chat_directo;
 }

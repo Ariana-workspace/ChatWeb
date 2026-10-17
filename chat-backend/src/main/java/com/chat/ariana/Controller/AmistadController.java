@@ -1,6 +1,7 @@
 package com.chat.ariana.Controller;
 
 import com.chat.ariana.Model.Amistad;
+import com.chat.ariana.Model.EstadoAmistad;
 import com.chat.ariana.services.AmistadService;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,10 @@ public class AmistadController {
     public List<Amistad> obtenerSolicitudesRecibidas(@PathVariable Integer id_amigo) {
         return amistadService.obtenerSolicitudesRecibidas(id_amigo);
     }
-
+    @GetMapping("/buscar/{id_usuario}/{id_amigo}/{respuesta}")
+    public Amistad responderSolicitud(@PathVariable Integer id_usuario,@PathVariable Integer id_amigo,@PathVariable EstadoAmistad respuesta){
+        return amistadService.responderSolicitud(id_usuario,id_amigo, respuesta);
+    }
     @PostMapping("/enviarsoli")
     public Amistad enviarSolicitud(@RequestBody Amistad amistad) {
         return amistadService.enviarSolicitud(amistad);

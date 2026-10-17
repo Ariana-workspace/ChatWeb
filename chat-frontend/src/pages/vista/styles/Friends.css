@@ -68,7 +68,10 @@ li{
 }
 /* ******************************** */
 /* SOLICITUDES*/
-
+.abrir-chat{
+    background-color:rgb(44, 39, 87);
+    border: none;
+}
 .btn-quitar {
   background: none;
   border: none;

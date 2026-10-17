@@ -1,12 +1,13 @@
 import {useState, useEffect
 } from 'react'
 import { usuarioPorId } from '../../../services/usuarioService';
-import { enviarSolicitud, obtenerSolicitudesEnviadas } from '../../../services/solicitudesAmistad';
+import { enviarSolicitud, obtenerSolicitudesEnviadas, quitarSolicitud, responderSolicitud } from '../../../services/solicitudesAmistad';
 
 
 const Add = () => {
   const [amigos, setAmigos] = useState([])
   const [usuariosABuscar, setUsuariosABuscar] = useState([])
+  const [btnAdd, setBtnAdd] = useState(true);
   const id_usuario =localStorage.getItem("id_usuario");
   const [q, setQ] = useState("");
 
@@ -21,9 +22,20 @@ const Add = () => {
     setUsuariosABuscar(usuario ? [usuario] : []);
   }
   const add = async (id_amigo, estado ) =>{
+    setBtnAdd(false)
     const amigo = await enviarSolicitud(id_usuario, id_amigo, estado);
     console.log(id_usuario, id_amigo, estado)
     return amigo;
+  }
+  const eliminar = async(id_usuario, id_amigo) =>{
+    const resultado = await responderSolicitud(id_usuario,id_amigo);
+    const amistad = Array.isArray(resultado) ? resultado[0] : resultado;
+    if (!amistad) {
+    console.log("No existe esa solicitud");
+    return;
+  }
+
+  await quitarSolicitud(amistad.id);
   }
 
   useEffect(() =>{
@@ -54,25 +66,23 @@ const Add = () => {
         <li className='text-white'>
         {user.nombre}
          
-        <button className="btn-sumar" onClick={()=>{add(user.id_usuario, "PENDIENTE")}}>
+        {btnAdd && <button className="btn-sumar" onClick={()=>{add(user.id_usuario, "PENDIENTE")}}>
         
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M8 3V13M3 8H13" stroke="#4DEA89" stroke-width="2" stroke-linecap="round"/>
         </svg>
+        </button>}
 
-
-        </button>
-        <button className="btn-quitar" title="Quitar solicitud"></button>
+        <button className="btn-quitar" onClick={()=>{eliminar(id_usuario, user.id_usuario)}} title="Quitar solicitud"></button>
         
         </li>
-      )
-      )}
+      ))}
         {amigos.map((amigo)=>
         (
         <li className='text-white'>
         {amigo.nombre}
          
-        <button className="btn-quitar" title="Quitar solicitud"></button>
+        <button className="btn-quitar" onClick={()=>{eliminar(id_usuario, amigo.id_usuario)}} title="Quitar solicitud"></button>
         
         </li>
       )

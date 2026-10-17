@@ -19,6 +19,18 @@ export async function obtenerSolicitudesRecibidas(id_amigo){
     });
     return response.data;
 }
+export async function responderSolicitud(id_usuario, id_amigo, respuesta) {
+    const token = localStorage.getItem("token")
+    const response = await axios.get(
+        `${URL}/amigos/buscar/${id_usuario}/${id_amigo}/${respuesta}`,
+        {
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+    return response.data;
+}
 export async function enviarSolicitud(id_usuario, id_amigo, estado ){
     const token = localStorage.getItem("token")
     const response = await axios.post(
@@ -35,10 +47,11 @@ export async function enviarSolicitud(id_usuario, id_amigo, estado ){
 
 export async function quitarSolicitud(id ){
     const token = localStorage.getItem("token")
-    const response = await axios.post(
+    const response = await axios.delete(
   `${URL}/amigos/quitarsoli/${id}`,
-  {}, // body vacío
   { headers: { Authorization: `Bearer ${token}` } } // config
   );
     return response.data;
+
+
 }
