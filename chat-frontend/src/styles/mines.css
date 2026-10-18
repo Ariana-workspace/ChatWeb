@@ -3,7 +3,10 @@
         background-color: #591ec7;
     }
     .bg-jared {
-        background-color: rgb(44, 39, 87);
+        background-color: rgb(78, 85, 210);
+    }
+    .bg-no-seleccionado{
+        background-color: rgb(28, 32, 96);
     }
     .text-jared{
         color: #2d2980;
@@ -19,6 +22,7 @@
     }
     .btn{
         box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.308);
+        border: none;
     }
     .btn-max{
         box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.308);

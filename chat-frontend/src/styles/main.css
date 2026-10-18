@@ -1,23 +1,12 @@
 .contenedor-global{
     display: flex;
-    background: radial-gradient(circle, #1f2a69 0%, #121212 70%);
+    background: radial-gradient(circle, #1E2964 0%, #151C41 70%);
     justify-content: space-around;
     align-items: center;
     height: 100vh;
     width: 100%;
 }
-.chat{
-    display: flex;
-    flex-direction: column;
-    height: 85vh;
-    width: 100%;
-    padding: 1vh 2vh;
-    margin-top: auto;
-    margin-bottom: 1rem;
-    background: radial-gradient(circle, #1f2569 0%, #121212 70%);background-color: rgba(21, 21, 21, 0.774);
-    border-radius: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.284);
-}
+
 .contenedor-main{
     display: flex;
     height: 95vh;
@@ -25,21 +14,5 @@
     justify-content: center;
     flex-direction: column;
 }
-.txt-title-group{
-    height: min-content;
-    width: 100%;
-}
-.navegador-chats{
-    width: 20%;
-    height: 95vh;
-    display: flex;
-    margin-top: 1rem;
-    background: linear-gradient(0deg, #1a173e44 0%, #19191951 70%);
-    border-radius: 1rem;
-    box-shadow: 0px 0px 4rem 2px #3327836b;
 
-}
 
-.chat-uwu ul{   
-    list-style: none;
-}

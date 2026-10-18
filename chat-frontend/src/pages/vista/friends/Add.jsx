@@ -6,6 +6,7 @@ import { enviarSolicitud, obtenerSolicitudesEnviadas, quitarSolicitud, responder
 
 const Add = () => {
   const [amigos, setAmigos] = useState([])
+  const [cargando, setCargando] = useState(true);
   const [usuariosABuscar, setUsuariosABuscar] = useState([])
   const [btnAdd, setBtnAdd] = useState(true);
   const id_usuario =localStorage.getItem("id_usuario");
@@ -39,8 +40,9 @@ const Add = () => {
   }
 
   useEffect(() =>{
-        const cargarAmigos= async () =>{
-          const data = await obtenerSolicitudesEnviadas(id_usuario);
+        async function cargarAmigos(){
+          try{
+            const data = await obtenerSolicitudesEnviadas(id_usuario);
           const amigosCompletos = await Promise.all(
             data.map(async (ug)=>{
               const amigo = await usuarioPorId(ug.id_amigo);
@@ -49,13 +51,33 @@ const Add = () => {
           )
           setAmigos(amigosCompletos);
           console.log(amigos)
+          }catch(error){
+            console.log("Error: ",error)
+          }finally{
+            setCargando(false)
+          }
         }
         cargarAmigos()
   },[id_usuario]);
+  
+  if (cargando) {
+    return (
+ 
+        <div className='contenedor-amigos'>
+      <input className='txt-write' type="text" placeholder='Buscar'/>
 
-
+      <div className="loading">
+        <div className="loading-card loading-estado">
+          <div className="loading-spinner"></div>
+          <p>Cargando tus solicitudes...</p>
+        </div>
+      </div>
+      </div>
+ 
+    );
+  }
   return (
-    <div className="contenedor-amigos">
+    <div className='contenedor-añadir'>
       <input className='txt-write' type="text" placeholder='Buscar'
         value={q} onChange={handleBuscar}
       />

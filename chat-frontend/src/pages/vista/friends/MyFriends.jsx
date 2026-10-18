@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react'
 import { obtenerSolicitudesRecibidas} from '../../../services/solicitudesAmistad';
 import { usuarioPorId } from '../../../services/usuarioService';
+import { crearChatDirecto } from '../../../services/chatDirectoService';
 
 const MyFriends = () => {
+  const [cargando, setCargando] = useState(true);
   const [amistades, setAmistades] = useState([])
   const id_usuario =localStorage.getItem("id_usuario");
 
@@ -23,12 +25,39 @@ const MyFriends = () => {
             setAmistades(datosUsuarios)
           }catch(error){
             console.error("Error al cargar amigos: ", error);
+          }finally {
+        setCargando(false);
+      }
+        }
+        async function cargarChat(id_usuario, id_amigo){
+          try{
+            const crearChat = await crearChatDirecto(id_usuario, id_amigo)
+          }catch(error){
+            console.log("Error: ", error);
           }
         }
         cargarAmigos()
       },[id_usuario]);
+
+      if (cargando) {
+    return (
+      <div className='contenedor-añadir'>
+      <input className='txt-write' type="text" placeholder='Buscar'/>
+
+      <div className="loading">
+        <div className="loading-card loading-estado">
+          <div className="loading-spinner"></div>
+          <p>Cargando amistades...</p>
+        </div>
+      </div>
+      </div>
+ 
+        
+ 
+    );
+  }
   return (
-    <div>
+    <div className='contenedor-añadir'>
       <input className='txt-write' type="text" placeholder='Buscar'/>
       <ul className='lista-amigos'>
          {amistades.map((amistad)=>
@@ -36,7 +65,7 @@ const MyFriends = () => {
         <li className='text-white'>
         {amistad.nombre}
         
-        <button className="abrir-chat" onClick={()=>{responderSoli(id_usuario ,amistad.id_usuario, "rechazada")}}>
+        <button className="abrir-chat" onClick={()=>{cargarChat(id_usuario ,amistad.id_usuario)}}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(104, 92, 217)" 
           stroke-width="2" 
           stroke-linecap="round" 

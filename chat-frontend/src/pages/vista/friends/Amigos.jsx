@@ -4,7 +4,7 @@ import Add from "./Add"
 import Solicitudes from './Solicitudes'
 import "../styles/Friends.css"
 const Amigos = () => {
-  const [friend, setFriend] = useState(false)
+  const [friend, setFriend] = useState(true)
   const [add, setAdd] = useState(false)
   const [solicitud, setSolicitud] = useState(false)
 
@@ -21,17 +21,16 @@ const Amigos = () => {
         setSolicitud(true)
         setFriend(false)
         setAdd(false)
-
     }
 
   }
   return (
     <div className='amigos'>
-      {/* <img src="" alt="" /> */}
       <ul className='opciones'>
-        <li><button onClick={() => cambiarSeccionAmigo("friend")} className='bg-jared'>my frie</button></li>
-        <li><button onClick={() => cambiarSeccionAmigo("add")} className='bg-jared'>add</button></li>
-        <li><button onClick={() => cambiarSeccionAmigo("solicitud")} className='bg-jared'>solicitudes</button></li>
+        <li><button onClick={() => cambiarSeccionAmigo("friend")}
+        className={friend ? "bg-jared": "bg-no-seleccionado"}>my frie</button></li>
+        <li><button onClick={() => cambiarSeccionAmigo("add")} className={add ? "bg-jared": "bg-no-seleccionado"}>add</button></li>
+        <li><button onClick={() => cambiarSeccionAmigo("solicitud")} className={solicitud ? "bg-jared": "bg-no-seleccionado"}>solicitudes</button></li>
       </ul>
       
       {friend && <MyFriends/>}

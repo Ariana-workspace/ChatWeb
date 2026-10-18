@@ -30,4 +30,11 @@ public class MensajeController {
                 .toList();
 
     }
+    @GetMapping("/directo/{id_chat_directo}")
+    public List<Mensaje> listarPorChatDirecto(@PathVariable Integer id_chat_directo) {
+        return mensajesService.obtenerMensajes().stream()
+                .filter(m -> m.getId_chat_directo().equals(id_chat_directo))
+                .toList();
+
+    }
 }

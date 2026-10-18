@@ -1,20 +1,390 @@
-.perfil{
+
+/* ================================
+   PALETA DE COLORES
+================================ */
+:root {
+    --perfil-fondo: #1F2A68;
+    --perfil-morado-oscuro: #1F2A68;
+    --perfil-morado: #1F2A68;
+    --perfil-texto: #FFFFFF;
+    --perfil-texto-secundario: #B9B7D4;
+    --perfil-borde: rgba(89, 98, 225, 0.479);
+    --perfil-superficie: rgba(255, 255, 255, 0.04);
+}
+
+/* ================================
+   CONTENEDOR PRINCIPAL
+================================ */
+.perfil {
     width: 100%;
-    height: 60%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
+    box-sizing: border-box;
+    color: var(--perfil-texto);
+    font-family: inherit;
 }
-.photo-user{
-    margin-top: 5%;
-    width: 60%;
+
+/* ================================
+   TARJETA DEL PERFIL
+================================ */
+.perfil-card {
+    width: 100%;
+    max-width: 440px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(
+        155deg,
+        #1F2A68 0%,
+        #151741 55%,
+        #243073 100%
+    );
+    border-radius: 18px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+    animation: perfil-aparecer 0.45s ease-out;
+}
+
+/* ================================
+   PORTADA DECORATIVA
+================================ */
+.perfil-portada {
+    height: 20%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+    background: linear-gradient(
+        125deg,
+        #2e3b87 0%,
+        #172051 55%,
+        #1c237e 100%
+    );
+}
+
+.perfil-portada::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        transparent 35%,
+        rgba(255, 255, 255, 0.035) 100%
+    );
+    pointer-events: none;
+}
+
+.perfil-etiqueta {
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 13px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 30px;
+    background: rgba(31, 41, 100, 0.45);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    backdrop-filter: blur(8px);
+}
+
+.perfil-punto {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
     border-radius: 50%;
+    background: #23cf14;
+    box-shadow: 0 0 10px rgba(169, 160, 255, 0.7);
 }
-.usuarioNombre{
-    width: 90%;
+
+.perfil-portada-circulo {
+    position: absolute;
+    border: 1px solid rgba(89, 133, 253, 0.08);
+    border-radius: 50%;
+    pointer-events: none;
 }
-.usuarioDescripcion{
-    margin-right: auto;
-    margin-left: 5%;
+
+.circulo-uno {
+    width: 210px;
+    height: 210px;
+    top: -115px;
+    right: -35px;
+    background: rgba(48, 57, 220, 0.186);
+}
+
+.circulo-dos {
+    width: 155px;
+    height: 155px;
+    top: 35px;
+    right: 65px;
+    background: rgba(45, 86, 211, 0.233);
+}
+
+/* ================================
+   CONTENIDO
+================================ */
+.perfil-contenido {
+    position: relative;
+    padding: 0 28px 28px;
+    text-align: center;
+}
+
+/* ================================
+   FOTO DE PERFIL
+================================ */
+.perfil-avatar-contenedor {
+    width: 112px;
+    height: 112px;
+    margin: -56px auto 18px;
+    position: relative;
+    z-index: 2;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 2px solid rgba(110, 120, 230, 0.791);
+    border-radius: 50%;
+    background: #2C2757;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.photo-user {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--perfil-morado-oscuro);
+}
+
+.perfil-avatar-vacio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #B9B0FF;
+    background: linear-gradient(
+        145deg,
+        #3E3683,
+        #1F2964
+    );
+}
+
+/* ================================
+   NOMBRE Y DESCRIPCIÓN
+================================ */
+.perfil-identidad {
+    width: 100%;
+}
+
+.usuarioNombre {
+    margin: 0;
+    color: var(--perfil-texto);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.perfil-subtitulo {
+    margin: 7px 0 0;
+    color: #a0a9ff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.usuarioDescripcion {
+    margin: 15px 0 0;
+    color: var(--perfil-texto-secundario);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+/* ================================
+   SEPARADOR
+================================ */
+.perfil-separador {
+    width: 100%;
+    height: 1px;
+    margin: 24px 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(93, 104, 223, 0.889),
+        transparent
+    );
+}
+
+/* ================================
+   DATOS DEL USUARIO
+================================ */
+.perfil-datos {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.perfil-dato {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid var(--perfil-borde);
+    border-radius: 14px;
+    background: var(--perfil-superficie);
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.perfil-dato:hover {
+    background: rgba(62, 54, 131, 0.25);
+    border-color: rgba(169, 160, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.perfil-icono {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b0b8ff;
+    border: 1px solid rgba(169, 160, 255, 0.13);
+    border-radius: 12px;
+    background: rgba(62, 54, 131, 0.38);
+}
+
+.perfil-dato-texto {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.perfil-dato-label {
+    color: var(--perfil-texto-secundario);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.perfil-dato-valor {
+    color: var(--perfil-texto);
+    font-size: 14px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+/* ================================
+   ESTADO DE CARGA
+================================ */
+.perfil-estado {
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: var(--perfil-texto-secundario);
+    font-size: 14px;
+}
+
+.perfil-estado p {
+    margin: 0;
+}
+
+.perfil-spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(255, 255, 255, 0.12);
+    border-top-color: #a0abff;
+    border-radius: 50%;
+    animation: perfil-girar 0.8s linear infinite;
+}
+
+/* ================================
+   ANIMACIONES
+================================ */
+@keyframes perfil-aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes perfil-girar {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ================================
+   DISEÑO RESPONSIVE
+================================ */
+@media (max-width: 480px) {
+    .perfil {
+        padding: 14px;
+    }
+
+    .perfil-card {
+        border-radius: 18px;
+    }
+
+    .perfil-portada {
+        height: 115px;
+        padding: 16px;
+    }
+
+    .perfil-contenido {
+        padding: 0 20px 22px;
+    }
+
+    .perfil-avatar-contenedor {
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+    }
+
+    .usuarioNombre {
+        font-size: 21px;
+    }
+
+    .perfil-dato {
+        padding: 12px;
+    }
+
+    .perfil-icono {
+        width: 39px;
+        height: 39px;
+    }
+}
+
+/* ================================
+   ACCESIBILIDAD
+================================ */
+@media (prefers-reduced-motion: reduce) {
+    .perfil-card,
+    .perfil-spinner,
+    .perfil-dato {
+        animation: none;
+        transition: none;
+    }
+
+    .perfil-dato:hover {
+        transform: none;
+    }
 }

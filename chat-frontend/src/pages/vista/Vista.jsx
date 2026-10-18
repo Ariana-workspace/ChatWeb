@@ -4,7 +4,7 @@ import Config from "./config/Config"
 import Perfil from "./perfil/Perfil"
 import Amigos from "./friends/Amigos"
 const Vista = () => {
-  const [perfil, setPerfil] = useState(false)
+  const [perfil, setPerfil] = useState(true)
   const [amigos, setAmigos] = useState(false)
   const [config, setConfig] = useState(false)
 
@@ -28,7 +28,7 @@ const Vista = () => {
     <>
     <div className='contenedor-de-navegacion'>
       <ul className='header-nav'>
-              <li><button onClick={() => cambiarPagina("perfil")} className={perfil ? "btn text-white bg-jared" : "btn black-btn text-white"} >perfil</button></li> 
+              <li><button onClick={() => cambiarPagina("perfil")} className={perfil ? "btn text-white bg-jared" : "btn text-white black-btn "} >perfil</button></li> 
               <li><button onClick={() => cambiarPagina("amigos")}  className={amigos ? "btn text-white bg-jared" : "btn black-btn  text-white"}>amigos</button></li> 
               <li><button onClick={() => cambiarPagina("config")}  className={config ? "btn text-white bg-jared" : "btn black-btn  text-white"}>config</button></li>
             </ul>

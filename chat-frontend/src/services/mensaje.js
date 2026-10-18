@@ -21,3 +21,13 @@ export async function historialDeMensajePorGrupo(id_grupo){
     });
     return response.data;
 }
+
+export async function historialDeMensajePorChatDirecto(id_chat_directo){
+  const token = localStorage.getItem("token");
+    const response = await axios.get(`${URL}/mensajes/directo/${id_chat_directo}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+    });
+    return response.data;
+}
