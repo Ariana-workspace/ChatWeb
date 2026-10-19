@@ -19,17 +19,15 @@ public class ChatDirectoService {
 
     public Chat_directo crearChatDirecto(Chat_directo chat_directo) {
         chat_directo.setFecha_creacion(LocalDate.now());
-        Map<String, Object> respuesta = restClient
+        String raw = restClient
                 .post()
                 .uri("https://ariworkplace.alwaysdata.net/chat_directo.php")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(chat_directo)
                 .retrieve()
-                .body(new ParameterizedTypeReference<Map<String, Object>>() {
-                });
-        Integer nuevoId = (Integer) respuesta.get("id");
-        chat_directo.setId_chat_directo(nuevoId);
-        System.out.println("Respuesta PHP Usuario: " + respuesta);
+                .body(String.class);
+
+        System.out.println("RESPUESTA PHP CHAT: [" + raw + "]");
         return chat_directo;
     }
 

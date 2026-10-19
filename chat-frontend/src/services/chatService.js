@@ -1,5 +1,4 @@
 import { Client } from "@stomp/stompjs";
-import SockJS from "sockjs-client";
 let cliente = null;
 let conectado = false; 
 let callbackGlobal = null;
@@ -28,9 +27,22 @@ export const conectarWebSocket = () => {
    
 }
 export function suscribirse(tipo, id, onMensaje){
-    const s = {destino: `/topic/chat/${tipo}/${id}`, callback:onMensaje}
+    const s = {destino: `/topic/chat/${tipo}/${id}`, callback:onMensaje, sub:null};
+    suscripciones.push(s);
+    
+    if(cliente && cliente.connected) activarSuscripcion(s);
+    // devuelve una función para cancelar solo esta suscripción
+    return () => {
+        if(s.sub) s.sub.unsubscribe();
+        suscripciones = suscripciones.filter((xd) => xd !== s );
+    }
 }
+
 export function enviarMensaje({ id_usuario, contenido, id_grupo = null, id_chat_directo = null }) {
+    if(!cliente || !cliente.connected) {
+        console.warn("Todavía no hay conexión, mensaje no enviado");
+        return;
+    }
   cliente.publish({
     destination: "/app/chat",
     body: JSON.stringify({ id_usuario, contenido, id_grupo, id_chat_directo }),
@@ -39,7 +51,7 @@ export function enviarMensaje({ id_usuario, contenido, id_grupo = null, id_chat_
 export const desconectarWebSocket = () =>{
     if (cliente) {
         cliente.deactivate();
-        conectado = false;
         cliente = null;
     }
+    suscripciones = [];
 }

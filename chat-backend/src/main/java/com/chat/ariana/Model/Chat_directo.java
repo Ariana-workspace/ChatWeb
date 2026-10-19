@@ -15,4 +15,5 @@ public class Chat_directo {
     Integer id_amigo;
     LocalDate fecha_creacion;
 
+
 }

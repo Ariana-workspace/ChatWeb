@@ -1,24 +1,45 @@
 import {useState, useEffect} from 'react'
-import { obtenerSolicitudesRecibidas} from '../../../services/solicitudesAmistad';
+import { obtenerSolicitudesEnviadas, obtenerSolicitudesRecibidas} from '../../../services/solicitudesAmistad';
 import { usuarioPorId } from '../../../services/usuarioService';
-import { crearChatDirecto } from '../../../services/chatDirectoService';
+import { crearChatDirecto, obtenerChatUnico } from '../../../services/chatDirectoService';
 
-const MyFriends = () => {
+const MyFriends = ({onSeleccionarChatUnico}) => {
   const [cargando, setCargando] = useState(true);
-  const [amistades, setAmistades] = useState([])
+  const [amistades, setAmistades] = useState([]);
   const id_usuario =localStorage.getItem("id_usuario");
+  async function cargarChat(id_usuario, id_amigo){
+          try{
+            let verificarSiTienenChat = await obtenerChatUnico(id_usuario, id_amigo)
 
+            let chat = Array.isArray(verificarSiTienenChat) ? verificarSiTienenChat[0] : verificarSiTienenChat;
+
+            if(!chat){
+              console.log("no tienen")
+              const crearChat = await crearChatDirecto(id_usuario, id_amigo);
+              chat = Array.isArray(crearChat) ? crearChat[0] : crearChat;
+            }
+            console.log("Chat encontrado: " + chat)
+            onSeleccionarChatUnico(chat.id_chat_directo)
+            return chat?.id_chat_directo ?? chat?.id ?? null;
+           
+          }catch(error){
+            console.log("Error: ", error);
+          }
+        }
   useEffect(() =>{
         async function cargarAmigos(){
           try{
-            const solicitudes = await obtenerSolicitudesRecibidas(id_usuario);
-            const amigos = solicitudes.filter(
-                solicitud => solicitud.estado === "aceptada"
+            const [enviadas, recibidas] = await Promise.all([
+            obtenerSolicitudesEnviadas(id_usuario), obtenerSolicitudesRecibidas(id_usuario),
+            ])
+            const aceptadas = [...enviadas, ...recibidas].filter(
+              (a) => String(a.estado).toLowerCase() === "aceptada"
             )
-            console.log(amigos)
+            console.log(aceptadas)
             const datosUsuarios = await Promise.all(
-              amigos.map(async (ug)=>{
+              aceptadas.map(async (ug)=>{
                 const amigo = await usuarioPorId(ug.id_usuario);
+                
                 return amigo;
               })
             )
@@ -29,14 +50,9 @@ const MyFriends = () => {
         setCargando(false);
       }
         }
-        async function cargarChat(id_usuario, id_amigo){
-          try{
-            const crearChat = await crearChatDirecto(id_usuario, id_amigo)
-          }catch(error){
-            console.log("Error: ", error);
-          }
-        }
+        
         cargarAmigos()
+        
       },[id_usuario]);
 
       if (cargando) {

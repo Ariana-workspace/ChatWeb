@@ -6,7 +6,6 @@ import {
   enviarMensaje,
   desconectarWebSocket
 } from '../../services/chatService';
-
 import '../../styles/Chat.css';
 import { usuarioPorId } from '../../services/usuarioService';
 import { historialDeMensajePorGrupo, historialDeMensajePorChatDirecto } from '../../services/mensaje';

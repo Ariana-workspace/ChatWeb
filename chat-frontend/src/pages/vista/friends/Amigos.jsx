@@ -3,7 +3,7 @@ import MyFriends from './MyFriends'
 import Add from "./Add"
 import Solicitudes from './Solicitudes'
 import "../styles/Friends.css"
-const Amigos = () => {
+const Amigos = ({onSeleccionarChatUnico}) => {
   const [friend, setFriend] = useState(true)
   const [add, setAdd] = useState(false)
   const [solicitud, setSolicitud] = useState(false)
@@ -33,7 +33,7 @@ const Amigos = () => {
         <li><button onClick={() => cambiarSeccionAmigo("solicitud")} className={solicitud ? "bg-jared": "bg-no-seleccionado"}>solicitudes</button></li>
       </ul>
       
-      {friend && <MyFriends/>}
+      {friend && <MyFriends onSeleccionarChatUnico={onSeleccionarChatUnico}/>}
       {add && <Add/>}
       {solicitud && <Solicitudes/>}
       

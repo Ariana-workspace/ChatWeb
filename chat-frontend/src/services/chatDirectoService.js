@@ -13,9 +13,7 @@ export async function crearChatDirecto(id_usuario, id_amigo) {
     }
   );
     return response.data;
-    
 }
-
 export async function obtenerChatUnico(id_usuario, id_amigo) {
     const token = localStorage.getItem("token")
     const response = await axios.get(

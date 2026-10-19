@@ -3,7 +3,7 @@ import {useState} from "react"
 import Config from "./config/Config"
 import Perfil from "./perfil/Perfil"
 import Amigos from "./friends/Amigos"
-const Vista = () => {
+const Vista = ({onSeleccionarChatUnico}) => {
   const [perfil, setPerfil] = useState(true)
   const [amigos, setAmigos] = useState(false)
   const [config, setConfig] = useState(false)
@@ -35,7 +35,7 @@ const Vista = () => {
         <div className='navegacion'>
             
             {perfil && <Perfil/>}
-            {amigos && <Amigos/>}
+            {amigos && <Amigos onSeleccionarChatUnico={onSeleccionarChatUnico}/>}
             {config && <Config/>}
             
         </div>
