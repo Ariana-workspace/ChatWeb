@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
@@ -26,14 +25,14 @@ public class MensajeController {
     @GetMapping("/grupo/{id_grupo}")
     public List<Mensaje> listarPorGrupos(@PathVariable Integer id_grupo) {
         return mensajesService.obtenerMensajes().stream()
-                .filter(m -> m.getId_grupo().equals(id_grupo))
+                .filter(m -> id_grupo.equals(m.getId_grupo()))
                 .toList();
 
     }
     @GetMapping("/directo/{id_chat_directo}")
-    public List<Mensaje> listarPorChatDirecto(@PathVariable Integer id_chat_directo) {
+    public List<Mensaje> listarPorChatDirecto(@PathVariable Integer id_chat_directo){
         return mensajesService.obtenerMensajes().stream()
-                .filter(m -> m.getId_chat_directo().equals(id_chat_directo))
+                .filter(m -> id_chat_directo.equals(m.getId_chat_directo()))
                 .toList();
 
     }

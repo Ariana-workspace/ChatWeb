@@ -39,6 +39,9 @@
     display: flex;
     padding: 0.01rem .7rem 0.01rem 1rem;
 }
+.contenedor-chat { display: flex; flex-direction: column; }
+.mensaje.mio { align-self: flex-end; }
+.mensaje.otro { align-self: flex-start; }
 .c-escribir{
     margin: 1vh auto;
     display: flex;

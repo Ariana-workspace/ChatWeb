@@ -19,6 +19,19 @@ const Chat = ({ id_perteneciente, tipo = 'grupo' }) => {
   const id_usuario = localStorage.getItem('id_usuario');
   const chatRef = useRef(null);
   const mensajesEnVivo = useRef([]);
+  const [nombres, setNombres] = useState({}); // { id_usuario: "nombre" }
+  const pedidos = useRef(new Set());          // ids que ya pedí
+  const cargarNombre = async (id) => {
+    if(id == null || pedidos.current.has(String(id))) return;
+    pedidos.current.add(String(id));
+    try{
+      const u = await usuarioPorId(id);
+      setNombres((prev) => ({...prev, [id]: u?.nombre ?? "Usuario"}))
+    }catch(e){
+      pedidos.current.delete(String(id));
+    }
+  }
+  
 
   const agregarSinDuplicar = (lista, nuevo) => {
     const existe = lista.some((m) => {
@@ -36,6 +49,7 @@ const Chat = ({ id_perteneciente, tipo = 'grupo' }) => {
   };
 
   const handleEnviar = (e) => {
+    
     e.preventDefault();
     const contenido = mensaje.trim();
     if (!contenido || !id_perteneciente || !id_usuario) return;
@@ -49,71 +63,51 @@ const Chat = ({ id_perteneciente, tipo = 'grupo' }) => {
   };
 
   useEffect(() => {
+    console.log("Chat MONTADO", tipo, id_perteneciente);
     if (!id_perteneciente) return;
 
     let activo = true;
     mensajesEnVivo.current = [];
 
-    const iniciarChat = async () => {
-      try {
-        // Iniciar la conexión y suscribirse antes de cargar el historial.
-        conectarWebSocket();
+    conectarWebSocket(); // si ya hay conexión, no hace nada
 
-        suscribirse(tipo, id_perteneciente, (msg) => {
-          if (!activo) return;
+  const cancelar = suscribirse(tipo, id_perteneciente, (msg) => {
+    if (!activo) return;
+    mensajesEnVivo.current = agregarSinDuplicar(mensajesEnVivo.current, msg);
+    setChat((prev) => agregarSinDuplicar(prev, msg));
+  });
 
-          // Guardar los mensajes recibidos mientras carga el historial.
-          mensajesEnVivo.current = agregarSinDuplicar(
-            mensajesEnVivo.current,
-            msg
-          );
+  const cargarHistorial = async () => {
+    try {
+      const [datosUsuario, historial] = await Promise.all([
+        usuarioPorId(id_usuario),
+        tipo === 'directo'
+          ? historialDeMensajePorChatDirecto(id_perteneciente)
+          : historialDeMensajePorGrupo(id_perteneciente),
+      ]);
 
-          setChat((prev) => agregarSinDuplicar(prev, msg));
-        });
+      if (!activo) return;
 
-        const [datosUsuario, historial] = await Promise.all([
-          usuarioPorId(id_usuario),
-          tipo === "directo"
-          ? historialDeMensajePorGrupo(id_perteneciente) :
-          historialDeMensajePorChatDirecto(id_perteneciente)
-        ]);
+      setUser(datosUsuario);
 
-        if (!activo) return;
+      const combinados = mensajesEnVivo.current.reduce(
+        agregarSinDuplicar,
+        Array.isArray(historial) ? historial : []
+      );
 
-        setUser(datosUsuario);
+      setChat(combinados);
+    } catch (error) {
+      console.error('Error al cargar el chat:', error);
+    }
+  };
 
-        // Combinar el historial con mensajes que llegaron durante la carga.
-        const combinados = [...(Array.isArray(historial) ? historial : [])];
+  cargarHistorial();
 
-        mensajesEnVivo.current.forEach((msg) => {
-          const existe = combinados.some((m) => {
-            if (m.id_mensaje != null && msg.id_mensaje != null) {
-              return m.id_mensaje === msg.id_mensaje;
-            }
-
-            return (
-              String(m.id_usuario ?? '') === String(msg.id_usuario ?? '') &&
-              m.contenido === msg.contenido &&
-              m.fecha === msg.fecha
-            );
-          });
-
-          if (!existe) combinados.push(msg);
-        });
-
-        setChat(combinados);
-      } catch (error) {
-        console.error('Error al cargar el chat:', error);
-      }
-    };
-
-    iniciarChat();
-
-    return () => {
-      activo = false;
-      desconectarWebSocket();
-    };
-  }, [id_perteneciente, id_usuario, tipo]);
+  return () => {
+    activo = false;
+    cancelar(); // solo cancela esta suscripción, no desconecta
+  };
+}, [id_perteneciente, id_usuario, tipo]);
 
   // Bajar automáticamente al último mensaje.
   useEffect(() => {
@@ -125,14 +119,19 @@ const Chat = ({ id_perteneciente, tipo = 'grupo' }) => {
   return (
     <div className="chat">
       <div className="contenedor-chat" ref={chatRef}>
-        {chat.map((m, i) => (
-          <Message
+        {chat.map((m, i) => {
+          const esMio = String(m.id_usuario) === String(id_usuario);
+          return (
+            <Message
             key={m.id_mensaje ?? i}
-            usuario={m.nombre ?? m.usuario ?? user?.nombre ?? 'Usuario'}
+            usuario={esMio ? 'Tú' : (nombres[m.id_usuario] ?? '...')}
             contenido={m.contenido}
             fecha={m.fecha}
+            esMio={esMio}
           />
-        ))}
+          )
+        })
+        }
       </div>
 
       <form className="c-escribir" onSubmit={handleEnviar}>

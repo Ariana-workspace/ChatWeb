@@ -7,6 +7,7 @@ const MyFriends = ({onSeleccionarChatUnico}) => {
   const [cargando, setCargando] = useState(true);
   const [amistades, setAmistades] = useState([]);
   const id_usuario =localStorage.getItem("id_usuario");
+  
   async function cargarChat(id_usuario, id_amigo){
           try{
             let verificarSiTienenChat = await obtenerChatUnico(id_usuario, id_amigo)
@@ -38,9 +39,9 @@ const MyFriends = ({onSeleccionarChatUnico}) => {
             console.log(aceptadas)
             const datosUsuarios = await Promise.all(
               aceptadas.map(async (ug)=>{
-                const amigo = await usuarioPorId(ug.id_usuario);
-                
-                return amigo;
+                const idAmigo =
+                Number(ug.id_usuario) === Number(id_usuario) ? ug.id_amigo : ug.id_usuario;
+                return usuarioPorId(idAmigo);
               })
             )
             setAmistades(datosUsuarios)
