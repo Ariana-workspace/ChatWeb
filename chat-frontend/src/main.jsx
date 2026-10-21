@@ -9,6 +9,7 @@ import "./styles/mines.css";
 import Login from './pages/login/Login.jsx'
 import Home from './pages/home/Home.jsx'
 import Register from './pages/register/Register.jsx'
+import "./responsive.css"
 
 const queryClient = new QueryClient({
   defaultOptions: {
